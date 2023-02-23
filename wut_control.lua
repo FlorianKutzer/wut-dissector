@@ -111,6 +111,48 @@ box_cntrl_rls_time_out = ProtoField.uint16("wut.cntrl.rls_time_out", "rls_time_o
 box_cntrl_cts_time_out = ProtoField.uint16("wut.cntrl.cts_time_out", "cts_time_out")
 box_cntrl_dsr_time_out = ProtoField.uint16("wut.cntrl.dsr_time_out", "dsr_time_out")
 
+-- box_cntrl xon/xoff char
+box_cntrl_xonchar = ProtoField.uint8("wut.cntrl.xonchar", "xonchar")
+box_cntrl_xoffchar = ProtoField.uint8("wut.cntrl.xoffchar", "xoffchar")
+
+-- box_cntrl hs on/off limit
+box_cntrl_hs_on_limit = ProtoField.uint16("wut.cntrl.hs_on_limit", "hs_on_limit")
+box_cntrl_hs_off_limit = ProtoField.uint16("wut.cntrl.hs_off_limit", "hs_off_limit")
+
+-- box_cntrl_pechar
+box_cntrl_pechar = ProtoField.uint8("wut.cntrl.pechar", "pechar")
+
+-- box_cntrl_commands
+box_cntrl_save_command = ProtoField.uint8("wut.cntrl.save_command", "save_command", nil, nil, 0xf)
+box_cntrl_clear_error = ProtoField.uint8("wut.cntrl.clear_error", "clear_error", nil, nil, 0x10)
+box_cntrl_set_fact_def = ProtoField.uint8("wut.cntrl.set_fact_def", "set_fact_def", nil, nil, 0x20)
+box_cntrl_free_cmd = ProtoField.uint8("wut.cntrl.free_cmd", "free_cmd", nil, nil, 0xc0)
+
+-- box_cntrl_hs_flags
+box_cntrl_f_cts_connect = ProtoField.uint16("wut.cntrl.f_cts_connect", "f_cts_connect", nil, nil, 0x1)
+box_cntrl_f_dsr_connect = ProtoField.uint16("wut.cntrl.f_dsr_connect", "f_dsr_connect", nil, nil, 0x2)
+box_cntrl_f_cts_accept = ProtoField.uint16("wut.cntrl.f_cts_accept", "f_cts_accept", nil, nil, 0x4)
+box_cntrl_f_dsr_accept = ProtoField.uint16("wut.cntrl.f_dsr_accept", "f_dsr_accept", nil, nil, 0x8)
+box_cntrl_no_use0 = ProtoField.uint16("wut.cntrl.no_use0", "no_use0", nil, nil, 0x3ffc0)
+
+-- box_cntrl_f_flags
+box_cntrl_f_rts_disabled = ProtoField.uint16("wut.cntrl.f_rts_disabled", "f_rts_disabled", nil, nil, 0x1)
+box_cntrl_f_dtr_disabled = ProtoField.uint16("wut.cntrl.f_dtr_disabled", "f_dtr_disabled", nil, nil, 0x2)
+box_cntrl_f_outx = ProtoField.uint16("wut.cntrl.f_outx", "f_outx", nil, nil, 0x4)
+box_cntrl_f_inx = ProtoField.uint16("wut.cntrl.f_inx", "f_inx", nil, nil, 0x8)
+box_cntrl_f_outx_cts = ProtoField.uint16("wut.cntrl.f_outx_cts", "f_outx_cts", nil, nil, 0x10)
+box_cntrl_f_outx_dsr = ProtoField.uint16("wut.cntrl.f_outx_dsr", "f_outx_dsr", nil, nil, 0x20)
+box_cntrl_f_inx_dtr = ProtoField.uint16("wut.cntrl.f_inx_dtr", "f_inx_dtr", nil, nil, 0x40)
+box_cntrl_f_inx_rts = ProtoField.uint16("wut.cntrl.f_inx_rts", "f_inx_rts", nil, nil, 0x80)
+box_cntrl_f_parity = ProtoField.uint16("wut.cntrl.f_parity", "f_parity", nil, nil, 0x100)
+box_cntrl_f_pechar = ProtoField.uint16("wut.cntrl.f_pechar", "f_pechar", nil, nil, 0x200)
+box_cntrl_f_inxfilter = ProtoField.uint16("wut.cntrl.f_inxfilter", "f_inxfilter", nil, nil, 0x400)
+box_cntrl_f_outxfilter = ProtoField.uint16("wut.cntrl.f_outxfilter", "f_outxfilter", nil, nil, 0x800)
+box_cntrl_f_rts_default = ProtoField.uint16("wut.cntrl.f_rts_default", "f_rts_default", nil, nil, 0x1000)
+box_cntrl_f_dtr_default = ProtoField.uint16("wut.cntrl.f_dtr_default", "f_dtr_default", nil, nil, 0x2000)
+box_cntrl_f_user_time = ProtoField.uint16("wut.cntrl.f_user_time", "f_user_time", nil, nil, 0x4000)
+box_cntrl_f_clr_err_char = ProtoField.uint16("wut.cntrl.f_clr_err_char", "f_clr_err_char", nil, nil, 0x8000)
+
 
 wut_protocol.fields = { zero_1, zero_2, -- start/end
 						com_error_f_data, com_error_f_net, com_error_f_com, com_error_f_break, -- com_error
@@ -124,7 +166,18 @@ wut_protocol.fields = { zero_1, zero_2, -- start/end
 						com_stat_cbInQue, com_stat_cbOutQue, -- com_stat
 						box_cntrl_baud_baud, box_cntrl_baud_fifo_aktiv, box_cntrl_baud_fifo, -- box_cntrl
 						box_cntrl_parity, box_cntrl_stop_bits, box_cntrl_data_bits, -- box_cntrl_bits
-						box_cntrl_rls_time_out, box_cntrl_cts_time_out, box_cntrl_dsr_time_out -- box_cntrl rls/cts/dsr timeout
+						box_cntrl_rls_time_out, box_cntrl_cts_time_out, box_cntrl_dsr_time_out, -- box_cntrl rls/cts/dsr timeout
+						box_cntrl_xonchar, box_cntrl_xoffchar, -- box_cntrl xon/xoff char
+						box_cntrl_hs_on_limit, box_cntrl_hs_off_limit, -- box_cntrl hs on/off limit
+						box_cntrl_pechar, -- box_cntrl_pechar
+						box_cntrl_save_command, box_cntrl_clear_error, box_cntrl_set_fact_def, box_cntrl_free_cmd, -- box_cntrl_commands
+						box_cntrl_f_cts_connect, box_cntrl_f_dsr_connect, box_cntrl_f_cts_accept, box_cntrl_f_dsr_accept, -- box_cntrl_hs_flags
+						box_cntrl_no_use0, -- box_cntrl_hs_flags
+						box_cntrl_f_rts_disabled, box_cntrl_f_dtr_disabled, box_cntrl_f_outx, box_cntrl_f_inx, -- box_cntrl_f_flags
+						box_cntrl_f_outx_cts, box_cntrl_f_outx_dsr, box_cntrl_f_inx_drt, box_cntrl_f_inx_rts, -- box_cntrl_f_flags
+						box_cntrl_f_parity, box_cntrl_f_pechar, box_cntrl_f_inxfilter, box_cntrl_f_outxfilter, -- box_cntrl_f_flags
+						box_cntrl_f_rts_default, box_cntrl_f_dtr_default, box_cntrl_f_user_time, box_cntrl_f_clr_err_char -- box_cntrl_f_flags
+
 }
 
 function wut_protocol.dissector(buffer, pinfo, tree)
@@ -141,64 +194,106 @@ function wut_protocol.dissector(buffer, pinfo, tree)
 	-- com_error struct
 	local com_error_subtree = subtree:add(wut_protocol, buffer(), "COM_ERROR")
 	
-	com_error_subtree:add(com_error_f_data, buffer(2,2))
-	com_error_subtree:add(com_error_f_net, buffer(2,2))
-	com_error_subtree:add(com_error_f_com, buffer(2,2))
-	com_error_subtree:add(com_error_f_break, buffer(2,2))
-	com_error_subtree:add(com_error_f_cts_time, buffer(2,2))
-	com_error_subtree:add(com_error_f_dsr_time, buffer(2,2))
-	com_error_subtree:add(com_error_f_rlsd_time, buffer(2,2))
-	com_error_subtree:add(com_error_f_overrun, buffer(2,2))
-	com_error_subtree:add(com_error_f_parity, buffer(2,2))
-	com_error_subtree:add(com_error_f_frame, buffer(2,2))
-	com_error_subtree:add(com_error_f_status, buffer(2,2))
-	com_error_subtree:add(com_error_no_use_1, buffer(2,2))
-	com_error_subtree:add(com_error_no_use_2, buffer(2,2))
-	com_error_subtree:add(com_error_f_rx_over, buffer(2,2))
-	com_error_subtree:add(com_error_no_use_3, buffer(2,2))
+	com_error_subtree:add(com_error_f_data, buffer(1,2))
+	com_error_subtree:add(com_error_f_net, buffer(1,2))
+	com_error_subtree:add(com_error_f_com, buffer(1,2))
+	com_error_subtree:add(com_error_f_break, buffer(1,2))
+	com_error_subtree:add(com_error_f_cts_time, buffer(1,2))
+	com_error_subtree:add(com_error_f_dsr_time, buffer(1,2))
+	com_error_subtree:add(com_error_f_rlsd_time, buffer(1,2))
+	com_error_subtree:add(com_error_f_overrun, buffer(1,2))
+	com_error_subtree:add(com_error_f_parity, buffer(1,2))
+	com_error_subtree:add(com_error_f_frame, buffer(1,2))
+	com_error_subtree:add(com_error_f_status, buffer(1,2))
+	com_error_subtree:add(com_error_no_use_1, buffer(1,2))
+	com_error_subtree:add(com_error_no_use_2, buffer(1,2))
+	com_error_subtree:add(com_error_f_rx_over, buffer(1,2))
+	com_error_subtree:add(com_error_no_use_3, buffer(1,2))
 	
 	-- com_stat
-	local com_stat_subtree = subtree:add(wut_protocol, "_COM_STAT")
+	local com_stat_subtree = subtree:add(wut_protocol, "COM_STAT")
 	
-	com_stat_subtree:add(com_stat_cts_hold, buffer(4,1))
-	com_stat_subtree:add(com_stat_dsr_hold, buffer(4,1))
-	com_stat_subtree:add(com_stat_ri_hold, buffer(4,1))
-	com_stat_subtree:add(com_stat_rlsd_hold, buffer(4,1))
-	com_stat_subtree:add(com_stat_dtr_hold, buffer(4,1))
-	com_stat_subtree:add(com_stat_rts_hold, buffer(4,1))
-	com_stat_subtree:add(com_stat_x_receive, buffer(4,1))
-	com_stat_subtree:add(com_stat_x_send, buffer(4,1))
-	com_stat_subtree:add(com_stat_break_mode, buffer(4,1))
-	com_stat_subtree:add(com_stat_dummy, buffer(4,1))
-	com_stat_subtree:add(com_stat_send_xoff, buffer(4,1))
-	com_stat_subtree:add(com_stat_flush_rd, buffer(4,1))
-	com_stat_subtree:add(com_stat_flush_wr, buffer(4,1))
-	com_stat_subtree:add(com_stat_set_rts_dtr, buffer(4,1))
-	com_stat_subtree:add(com_stat_set_break, buffer(4,1))
-	com_stat_subtree:add(com_stat_clear_break, buffer(4,1))
+	com_stat_subtree:add(com_stat_cts_hold, buffer(3,2))
+	com_stat_subtree:add(com_stat_dsr_hold, buffer(3,2))
+	com_stat_subtree:add(com_stat_ri_hold, buffer(3,2))
+	com_stat_subtree:add(com_stat_rlsd_hold, buffer(3,2))
+	com_stat_subtree:add(com_stat_dtr_hold, buffer(3,2))
+	com_stat_subtree:add(com_stat_rts_hold, buffer(3,2))
+	com_stat_subtree:add(com_stat_x_receive, buffer(3,2))
+	com_stat_subtree:add(com_stat_x_send, buffer(3,2))
+	com_stat_subtree:add(com_stat_break_mode, buffer(3,2))
+	com_stat_subtree:add(com_stat_dummy, buffer(3,2))
+	com_stat_subtree:add(com_stat_send_xoff, buffer(3,2))
+	com_stat_subtree:add(com_stat_flush_rd, buffer(3,2))
+	com_stat_subtree:add(com_stat_flush_wr, buffer(3,2))
+	com_stat_subtree:add(com_stat_set_rts_dtr, buffer(3,2))
+	com_stat_subtree:add(com_stat_set_break, buffer(3,2))
+	com_stat_subtree:add(com_stat_clear_break, buffer(3,2))
 	
 	com_stat_subtree:add(com_stat_cbInQue, buffer(5,2))
 	com_stat_subtree:add(com_stat_cbOutQue, buffer(7,2))
 	
 	-- box_cntrl
-	local box_cntrl_subtre = subtree:add(wut_protocol, "_BOX_CNTRL")
+	local box_cntrl_subtree = subtree:add(wut_protocol, "BOX_CNTRL")
 	
 	-- baud
 	
-	box_cntrl_subtre:add(box_cntrl_baud_baud, buffer(9,1))
-	box_cntrl_subtre:add(box_cntrl_baud_fifo_aktiv, buffer(9,1))
-	box_cntrl_subtre:add(box_cntrl_baud_fifo, buffer(9,1))
+	box_cntrl_subtree:add(box_cntrl_baud_baud, buffer(9,1))
+	box_cntrl_subtree:add(box_cntrl_baud_fifo_aktiv, buffer(9,1))
+	box_cntrl_subtree:add(box_cntrl_baud_fifo, buffer(9,1))
 	
 	-- bits
-	box_cntrl_subtre:add(box_cntrl_parity, buffer(10,1))
-	box_cntrl_subtre:add(box_cntrl_stop_bits, buffer(10,1))
-	box_cntrl_subtre:add(box_cntrl_data_bits, buffer(10,1))
+	box_cntrl_subtree:add(box_cntrl_parity, buffer(10,1))
+	box_cntrl_subtree:add(box_cntrl_stop_bits, buffer(10,1))
+	box_cntrl_subtree:add(box_cntrl_data_bits, buffer(10,1))
 	
 	-- rls/cts/dsr timeout
-	box_cntrl_subtre:add(box_cntrl_rls_time_out, buffer(11,1))
-	box_cntrl_subtre:add(box_cntrl_cts_time_out, buffer(12,1))
-	box_cntrl_subtre:add(box_cntrl_dsr_time_out, buffer(13,1))
+	box_cntrl_subtree:add(box_cntrl_rls_time_out, buffer(11,2))
+	box_cntrl_subtree:add(box_cntrl_cts_time_out, buffer(13,2))
+	box_cntrl_subtree:add(box_cntrl_dsr_time_out, buffer(15,2))
 	
+	-- box_cntrl xon/xoff char
+	box_cntrl_subtree:add(box_cntrl_xonchar, buffer(17,1))
+	box_cntrl_subtree:add(box_cntrl_xoffchar, buffer(18,1))
+
+	-- box_cntrl hs on/off limit	
+	box_cntrl_subtree:add(box_cntrl_hs_on_limit, buffer(19,2))
+	box_cntrl_subtree:add(box_cntrl_hs_off_limit, buffer(21,2))
+
+	-- box_cntrl_pechar
+	box_cntrl_subtree:add(box_cntrl_pechar, buffer(23,1))
+
+	-- box_cntrl_commands
+	box_cntrl_subtree:add(box_cntrl_save_command, buffer(24,1))
+	box_cntrl_subtree:add(box_cntrl_clear_error, buffer(24,1))
+	box_cntrl_subtree:add(box_cntrl_set_fact_def, buffer(24,1))
+	box_cntrl_subtree:add(box_cntrl_free_cmd, buffer(24,1))
+
+	-- box_cntrl_hs_flags
+	box_cntrl_subtree:add(box_cntrl_f_cts_connect, buffer(25,2))
+	box_cntrl_subtree:add(box_cntrl_f_dsr_connect, buffer(25,2))
+	box_cntrl_subtree:add(box_cntrl_f_cts_accept, buffer(25,2))
+	box_cntrl_subtree:add(box_cntrl_f_dsr_accept, buffer(25,2))
+	box_cntrl_subtree:add(box_cntrl_no_use0, buffer(25,2))
+
+	-- box_cntrl_f_flags
+	box_cntrl_subtree:add(box_cntrl_f_rts_disabled, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_dtr_disabled, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_outx, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_inx, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_outx_cts, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_outx_dsr, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_inx_drt, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_inx_rts, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_parity, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_pechar, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_inxfilter, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_outxfilter, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_rts_default, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_dtr_default, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_user_time, buffer(27,2))
+	box_cntrl_subtree:add(box_cntrl_f_clr_err_char, buffer(27,2))
+
 	-- end char
 	subtree:add(zero_1, buffer(29,1))
 

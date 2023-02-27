@@ -1,4 +1,4 @@
-#!/usr/bin/env lua
+--#!/usr/bin/env lua
 
 --[[
 -- Copyright (c) 2023 Florian Kutzer <info@florian-kutzer.de>

@@ -195,7 +195,7 @@ function wut_protocol.dissector(buffer, pinfo, tree)
 	subtree:add(zero_1, buffer(0,1))
 	
 	-- com_error struct
-	local com_error_subtree = subtree:add(wut_protocol, buffer(), "COM_ERROR")
+	local com_error_subtree = subtree:add(wut_protocol, buffer(1,2), "COM_ERROR")
 	
 	com_error_subtree:add(com_error_f_data, buffer(1,2))
 	com_error_subtree:add(com_error_f_net, buffer(1,2))
@@ -214,7 +214,7 @@ function wut_protocol.dissector(buffer, pinfo, tree)
 	com_error_subtree:add(com_error_no_use_3, buffer(1,2))
 	
 	-- com_stat
-	local com_stat_subtree = subtree:add(wut_protocol, "COM_STAT")
+	local com_stat_subtree = subtree:add(wut_protocol, buffer(3,6), "COM_STAT")
 	
 	com_stat_subtree:add(com_stat_cts_hold, buffer(3,2))
 	com_stat_subtree:add(com_stat_dsr_hold, buffer(3,2))
@@ -237,7 +237,7 @@ function wut_protocol.dissector(buffer, pinfo, tree)
 	com_stat_subtree:add(com_stat_cbOutQue, buffer(7,2))
 	
 	-- box_cntrl
-	local box_cntrl_subtree = subtree:add(wut_protocol, "BOX_CNTRL")
+	local box_cntrl_subtree = subtree:add(wut_protocol, buffer(9,20), "BOX_CNTRL")
 	
 	-- baud
 	

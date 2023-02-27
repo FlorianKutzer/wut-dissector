@@ -133,7 +133,7 @@ box_cntrl_f_cts_connect = ProtoField.uint16("wut.cntrl.f_cts_connect", "f_cts_co
 box_cntrl_f_dsr_connect = ProtoField.uint16("wut.cntrl.f_dsr_connect", "f_dsr_connect", nil, nil, 0x2)
 box_cntrl_f_cts_accept = ProtoField.uint16("wut.cntrl.f_cts_accept", "f_cts_accept", nil, nil, 0x4)
 box_cntrl_f_dsr_accept = ProtoField.uint16("wut.cntrl.f_dsr_accept", "f_dsr_accept", nil, nil, 0x8)
-box_cntrl_no_use0 = ProtoField.uint16("wut.cntrl.no_use0", "no_use0", nil, nil, 0x3ffc0)
+box_cntrl_no_use0 = ProtoField.uint16("wut.cntrl.no_use0", "no_use0", nil, nil, 0xfff0)
 
 -- box_cntrl_f_flags
 box_cntrl_f_rts_disabled = ProtoField.uint16("wut.cntrl.f_rts_disabled", "f_rts_disabled", nil, nil, 0x1)
@@ -174,7 +174,7 @@ wut_protocol.fields = { zero_1, zero_2, -- start/end
 						box_cntrl_f_cts_connect, box_cntrl_f_dsr_connect, box_cntrl_f_cts_accept, box_cntrl_f_dsr_accept, -- box_cntrl_hs_flags
 						box_cntrl_no_use0, -- box_cntrl_hs_flags
 						box_cntrl_f_rts_disabled, box_cntrl_f_dtr_disabled, box_cntrl_f_outx, box_cntrl_f_inx, -- box_cntrl_f_flags
-						box_cntrl_f_outx_cts, box_cntrl_f_outx_dsr, box_cntrl_f_inx_drt, box_cntrl_f_inx_rts, -- box_cntrl_f_flags
+						box_cntrl_f_outx_cts, box_cntrl_f_outx_dsr, box_cntrl_f_inx_dtr, box_cntrl_f_inx_rts, -- box_cntrl_f_flags
 						box_cntrl_f_parity, box_cntrl_f_pechar, box_cntrl_f_inxfilter, box_cntrl_f_outxfilter, -- box_cntrl_f_flags
 						box_cntrl_f_rts_default, box_cntrl_f_dtr_default, box_cntrl_f_user_time, box_cntrl_f_clr_err_char -- box_cntrl_f_flags
 

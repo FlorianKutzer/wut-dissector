@@ -102,7 +102,9 @@ box_cntrl_baud_fifo_aktiv = ProtoField.char("wut.cntrl_baud.fifo_aktiv", "fifo_a
 box_cntrl_baud_fifo = ProtoField.char("wut.cntrl_baud.fifo", "fifo", nil, nil, 0xc0)
 
 -- box_cntrl_bits
+box_cntrl_sticky_parity = ProtoField.uint8("wut.cntrl_baud.sticky_parity", "sticky_parity", nil, nil, 0x20)
 box_cntrl_parity = ProtoField.uint8("wut.cntrl_baud.parity", "parity", nil, parity_types, 0x10)
+box_cntrl_parity_status = ProtoField.uint8("wut.cntrl_baud.parity_status", "parity_status", nil, nil, 0x8)
 box_cntrl_stop_bits = ProtoField.uint8("wut.cntrl_baud.stop_bits", "stop_bits", nil, stopbit_types, 0x4)
 box_cntrl_data_bits = ProtoField.uint8("wut.cntrl_baud.data_bits", "data_bits", nil, databit_types, 0x3)
 
@@ -166,6 +168,7 @@ wut_protocol.fields = { zero_1, zero_2, -- start/end
 						com_stat_cbInQue, com_stat_cbOutQue, -- com_stat
 						box_cntrl_baud_baud, box_cntrl_baud_fifo_aktiv, box_cntrl_baud_fifo, -- box_cntrl
 						box_cntrl_parity, box_cntrl_stop_bits, box_cntrl_data_bits, -- box_cntrl_bits
+						box_cntrl_sticky_parity, box_cntrl_parity_status, -- box_cntrl_bits
 						box_cntrl_rls_time_out, box_cntrl_cts_time_out, box_cntrl_dsr_time_out, -- box_cntrl rls/cts/dsr timeout
 						box_cntrl_xonchar, box_cntrl_xoffchar, -- box_cntrl xon/xoff char
 						box_cntrl_hs_on_limit, box_cntrl_hs_off_limit, -- box_cntrl hs on/off limit
@@ -243,6 +246,9 @@ function wut_protocol.dissector(buffer, pinfo, tree)
 	box_cntrl_subtree:add(box_cntrl_baud_fifo, buffer(9,1))
 	
 	-- bits
+	-- WIP sort commands
+	box_cntrl_subtree:add(box_cntrl_sticky_parity, buffer(10,1))
+	box_cntrl_subtree:add(box_cntrl_parity_status, buffer(10,1))
 	box_cntrl_subtree:add(box_cntrl_parity, buffer(10,1))
 	box_cntrl_subtree:add(box_cntrl_stop_bits, buffer(10,1))
 	box_cntrl_subtree:add(box_cntrl_data_bits, buffer(10,1))
